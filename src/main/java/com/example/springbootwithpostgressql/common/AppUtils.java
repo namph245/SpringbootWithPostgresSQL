@@ -11,6 +11,7 @@ public class AppUtils {
 
     static final String regexEmail = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
     static String regexURL = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+    static String regexUsername = "^[A-Za-z0-9_]{3,}$";
 
     public static String parseString(Object obj) {
         if (obj == null) {
@@ -120,6 +121,12 @@ public class AppUtils {
             Matcher matcher = pattern.matcher(url);
             return matcher.matches();
         }
+    }
+
+    public static boolean validateUsername(String username) {
+        Pattern pattern = Pattern.compile(regexUsername);
+        Matcher matcher = pattern.matcher(username);
+        return matcher.matches();
     }
 
     public static boolean validatePassword(String password){

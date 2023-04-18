@@ -1,12 +1,19 @@
 package com.example.springbootwithpostgressql.entity;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -17,8 +24,8 @@ public class User {
     private String email;
     private String phone_number;
     private int role;
-    private String createAt;
-    private String updateAt;
+    private Long createAt;
+    private Long updateAt;
     private Boolean isActive;
     private String createBy;
     private String updateBy;
