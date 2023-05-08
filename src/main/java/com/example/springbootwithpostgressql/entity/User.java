@@ -29,6 +29,6 @@ public class User {
     private Boolean isActive;
     private String createBy;
     private String updateBy;
-
+    private String token;
 
 }

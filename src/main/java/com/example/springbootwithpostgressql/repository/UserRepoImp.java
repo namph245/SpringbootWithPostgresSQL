@@ -3,13 +3,9 @@ import com.example.springbootwithpostgressql.entity.User;
 import com.example.springbootwithpostgressql.request.CreateUserRequest;
 import com.example.springbootwithpostgressql.request.DeleteUserRequest;
 import com.example.springbootwithpostgressql.request.UpdateUserRequest;
+import com.example.springbootwithpostgressql.request.UpdateUserTokenRequest;
 import com.example.springbootwithpostgressql.response.BaseResponse;
 import com.example.springbootwithpostgressql.response.GetArrayResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -147,6 +143,23 @@ public class UserRepoImp implements UserRepo {
 
             update = jdbcTemplate.update(query, user.getEmail(), user.getPhoneNumber(), user.getRole(), user.getUpdateAt(), user.getUpdateBy(), user.getUserId());
 
+            response.setCode(update);
+        }catch (Exception ex) {
+            response.setResult(-1, "Lỗi hệ thống : " + ex.getMessage());
+            return response;
+        }
+        return response;
+    }
+
+    @Override
+    public BaseResponse updateUserToken(UpdateUserTokenRequest user) {
+
+        BaseResponse response = new BaseResponse();
+        Integer update = 0;
+
+        try {
+            String query = "update \"user\" set token = ? where id = ?";
+            update = jdbcTemplate.update(query, user.getToken(), user.getUserId());
             response.setCode(update);
         }catch (Exception ex) {
             response.setResult(-1, "Lỗi hệ thống : " + ex.getMessage());

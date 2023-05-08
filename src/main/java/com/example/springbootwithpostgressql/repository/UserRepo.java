@@ -4,6 +4,7 @@ import com.example.springbootwithpostgressql.entity.User;
 import com.example.springbootwithpostgressql.request.CreateUserRequest;
 import com.example.springbootwithpostgressql.request.DeleteUserRequest;
 import com.example.springbootwithpostgressql.request.UpdateUserRequest;
+import com.example.springbootwithpostgressql.request.UpdateUserTokenRequest;
 import com.example.springbootwithpostgressql.response.BaseResponse;
 import com.example.springbootwithpostgressql.response.GetArrayResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,6 +19,8 @@ public interface UserRepo {
     BaseResponse save(CreateUserRequest user, String username);
 
     BaseResponse update(UpdateUserRequest user, String username);
+
+    BaseResponse updateUserToken(UpdateUserTokenRequest user);
 
     BaseResponse delete(DeleteUserRequest request);
 
